@@ -1,0 +1,66 @@
+name: entain_beer_task_richardas
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  bloc: ^8.1.0
+  bloc_concurrency: ^0.2.0
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.1
+  json_annotation: ^4.6.0
+  sliding_up_panel2: ^3.2.2
+  stream_transform: ^2.0.0
+  transparent_image: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.2.0
+  json_serializable: ^6.3.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    # - images/a_dot_burr.jpeg
+    # - images/a_dot_ham.jpeg
+    - assets/sample_data.json
+  fonts:
+    - family: GoogleSans
+      fonts:
+        - asset: assets/fonts/google_sans/ProductSans-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/google_sans/ProductSans-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/google_sans/ProductSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/google_sans/ProductSans-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/google_sans/ProductSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/google_sans/ProductSans-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/google_sans/ProductSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/google_sans/ProductSans-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/google_sans/ProductSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/google_sans/ProductSans-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/google_sans/ProductSans-Black.ttf
+          weight: 900
+        - asset: assets/fonts/google_sans/ProductSans-BlackItalic.ttf
+          weight: 900
+          style: italic
