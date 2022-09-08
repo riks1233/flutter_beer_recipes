@@ -26,10 +26,5 @@ class BeersState extends Equatable {
   }
 
   @override
-  String toString() {
-    return '''BeersState { status: $status, hasReachedMax: $hasReachedMax, beers: ${beers.length} }''';
-  }
-
-  @override
   List<Object> get props => [status, beers, hasReachedMax];
 }
