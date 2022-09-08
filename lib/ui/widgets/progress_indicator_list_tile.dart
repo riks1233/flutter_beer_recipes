@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// A [CircularProgressIndicator] to be included as a list tile for [ListView] to indicate
+/// further loading of the elements.
 class ProgressIndicatorListTile extends StatelessWidget {
   const ProgressIndicatorListTile({super.key});
 

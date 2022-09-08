@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:entain_beer_task_richardas/blocs/beers/beers_bloc.dart';
-import 'package:entain_beer_task_richardas/ui/pages/page_wrapper.dart';
+import 'package:entain_beer_task_richardas/ui/widgets/page_wrapper.dart';
 import 'package:entain_beer_task_richardas/ui/widgets/beer_list/beer_list.dart';
 
 class BeerListPage extends StatelessWidget {
@@ -17,4 +17,3 @@ class BeerListPage extends StatelessWidget {
     );
   }
 }
-

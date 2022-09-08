@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Creates a [Transform] horizontal slide animation. Starts animating on build/spawn.
 class AnimatedTransformHorizontalSlide extends StatelessWidget {
   AnimatedTransformHorizontalSlide(
       {required this.childStartOffset,

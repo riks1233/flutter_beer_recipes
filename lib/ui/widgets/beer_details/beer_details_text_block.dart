@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:entain_beer_task_richardas/models/beer/beer.dart';
 import 'package:entain_beer_task_richardas/ui/widgets/text_block/text_block.dart';
@@ -28,10 +27,9 @@ class BeerDetailsTextBlock extends StatelessWidget {
       Text('${beer.name}',
           style: const TextStyle(
               height: 1, fontSize: 32, fontWeight: FontWeight.w500)),
+      TextBlockHeading3('by ${beer.contributed_by ?? 'unknown'}'),
       const SizedBox(height: 8),
-      TextBlockBodyText('by ${beer.contributed_by ?? 'unknown'}'),
-      const SizedBox(height: 8),
-      TextBlockBodyText('${beer.description}', color: Colors.grey.shade700),
+      TextBlockBodyText('${beer.description}'),
       const SizedBox(height: 16),
       TextBlockQuote('${beer.tagline}'),
     ];

@@ -1,3 +1,4 @@
+import 'package:entain_beer_task_richardas/ui/widgets/text_block/text_block_bodytext.dart';
 import 'package:flutter/material.dart';
 
 class TextBlockBulletList extends StatelessWidget {
@@ -12,13 +13,7 @@ class TextBlockBulletList extends StatelessWidget {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: stringList
-                  ?.map((item) => Text(
-                        '\u2022  $item',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(color: Colors.grey.shade700),
-                      ))
+                  ?.map((item) => TextBlockBodyText('\u2022  $item'))
                   .toList() ??
               []),
     );

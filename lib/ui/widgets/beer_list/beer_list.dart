@@ -1,8 +1,8 @@
-import 'package:entain_beer_task_richardas/ui/widgets/beer_list/beer_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:entain_beer_task_richardas/ui/widgets/progress_indicator_list_tile.dart';
 import 'package:entain_beer_task_richardas/blocs/beers/beers_bloc.dart';
+import 'package:entain_beer_task_richardas/ui/widgets/beer_list/beer_list_tile.dart';
+import 'package:entain_beer_task_richardas/ui/widgets/progress_indicator_list_tile.dart';
 
 class BeerList extends StatefulWidget {
   const BeerList({super.key});
@@ -51,14 +51,14 @@ class _BeerListState extends State<BeerList> {
               return const Center(child: Text('No beers today.'));
             }
             return ListView.builder(
-              padding: EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.only(top: 8),
               itemCount: state.hasReachedMax
                   ? state.beers.length
                   : state.beers.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
                   // Insert a padding divider.
-                  return SizedBox(
+                  return const SizedBox(
                     height: 8,
                   );
                 }

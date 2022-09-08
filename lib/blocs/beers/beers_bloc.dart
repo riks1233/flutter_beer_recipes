@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-
 import 'package:stream_transform/stream_transform.dart';
 import 'package:equatable/equatable.dart';
 import 'package:dio/dio.dart';
@@ -45,25 +43,22 @@ class BeersBloc extends Bloc<BeersEvent, BeersState> {
       }
       final nextPage = state.beers.length ~/ _beersPerPage + 1;
       final beers = await _fetchBeers(page: nextPage);
-      beers.isEmpty
-          ? emit(state.copyWith(hasReachedMax: true))
-          : emit(
-              state.copyWith(
-                status: BeersStatus.success,
-                beers: List.of(state.beers)..addAll(beers),
-                hasReachedMax: false,
-              ),
-            );
+      final hasReachedMax = beers.isEmpty || beers.length < _beersPerPage;
+      emit(
+        state.copyWith(
+          status: BeersStatus.success,
+          beers: List.of(state.beers)..addAll(beers),
+          hasReachedMax: hasReachedMax,
+        ),
+      );
     } catch (_) {
       emit(state.copyWith(status: BeersStatus.failure));
     }
   }
 
   Future<List<Beer>> _fetchBeers({int page = 1}) async {
-    final response = await Dio().get(
-      _endpointUrl,
-      queryParameters: {'page' : page, 'per_page' : _beersPerPage}
-    );
+    final response = await Dio().get(_endpointUrl,
+        queryParameters: {'page': page, 'per_page': _beersPerPage});
     if (response.statusCode == 200) {
       List<dynamic> beersJsonList = response.data;
       List<Beer> beers =
@@ -72,61 +67,4 @@ class BeersBloc extends Bloc<BeersEvent, BeersState> {
     }
     throw Exception('Error fetching beers.');
   }
-
-  // TODO: cleanup
-  // Fetch beers from local json file.
-
-  // Future<void> _onBeersFetched(
-  //     BeersFetched event, Emitter<BeersState> emit) async {
-  //   if (state.hasReachedMax) return;
-  //   try {
-  //     if (state.status == BeersStatus.initial) {
-  //       final beers = await _fetchBeers();
-  //       return emit(
-  //         state.copyWith(
-  //           status: BeersStatus.success,
-  //           beers: beers,
-  //           hasReachedMax: true,
-  //         ),
-  //       );
-  //     }
-  //     // final beers = await _fetchBeers(state.beers.length);
-  //     // beers.isEmpty
-  //     //     ? emit(state.copyWith(hasReachedMax: true))
-  //     //     : emit(
-  //     //         state.copyWith(
-  //     //           status: BeersStatus.success,
-  //     //           beers: List.of(state.beers)..addAll(beers),
-  //     //           hasReachedMax: false,
-  //     //         ),
-  //     //       );
-  //   } catch (_) {
-  //     emit(state.copyWith(status: BeersStatus.failure));
-  //   }
-  // }
-  // Future<List<Beer>> _fetchBeers([int startIndex = 0]) async {
-  //   String beersJson = await rootBundle.loadString('assets/sample_data.json');
-  //   List<dynamic> beersJsonList = jsonDecode(beersJson);
-  //   List<Beer> beers =
-  //       beersJsonList.map((beerJson) => Beer.fromJson(beerJson)).toList();
-  //   return beers;
-
-  //   // final response = await httpClient.get(
-  //   //   Uri.https(
-  //   //     'jsonplaceholder.typicode.com',
-  //   //     '/beers',
-  //   //     <String, String>{'_start': '$startIndex', '_limit': '$_beerLimit'},
-  //   //   ),
-  //   // );
-  //   // if (response.statusCode == 200) {
-  //   //   final body = json.decode(response.body) as List;
-  //   //   return body.map((dynamic json) {
-  //   //     final map = json as Map<String, dynamic>;
-  //   //     return Beer(
-  //   //       id: map['id'] as int
-  //   //     );
-  //   //   }).toList();
-  //   // }
-  //   // throw Exception('Error fetching beers.');
-  // }
 }

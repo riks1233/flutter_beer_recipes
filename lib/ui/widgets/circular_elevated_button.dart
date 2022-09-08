@@ -19,7 +19,7 @@ class CircularElevatedButton extends StatelessWidget {
             color: Colors.black.withOpacity(0.10),
             spreadRadius: 2,
             blurRadius: 8,
-            offset: Offset(3, 6), // changes position of shadow
+            offset: const Offset(3, 6), // changes position of shadow
           ),
         ],
         shape: BoxShape.circle,
@@ -27,11 +27,11 @@ class CircularElevatedButton extends StatelessWidget {
       child: Material(
         clipBehavior: Clip.hardEdge,
         color: Colors.white,
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         child: InkWell(
           onTap: onTap ?? () {},
           child: Padding(
-            padding: EdgeInsets.all(11),
+            padding: const EdgeInsets.all(11),
             child: Icon(
               iconData,
               size: 26,

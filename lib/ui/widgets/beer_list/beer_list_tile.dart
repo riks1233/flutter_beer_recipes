@@ -1,7 +1,7 @@
-import 'package:entain_beer_task_richardas/ui/widgets/beer_circle_avatar.dart';
 import 'package:flutter/material.dart';
-import 'package:entain_beer_task_richardas/ui/pages/beer_details_page.dart';
 import 'package:entain_beer_task_richardas/models/beer/beer.dart';
+import 'package:entain_beer_task_richardas/ui/widgets/beer_circle_avatar.dart';
+import 'package:entain_beer_task_richardas/ui/pages/beer_details_page.dart';
 
 class BeerListTile extends StatelessWidget {
   const BeerListTile({required this.beer, super.key});

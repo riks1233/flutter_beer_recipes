@@ -16,7 +16,7 @@ class TextBlockBodyText extends StatelessWidget {
       style: Theme.of(context)
           .textTheme
           .bodyText2!
-          .copyWith(color: color ?? Colors.grey.shade700),
+          .copyWith(color: color ?? Colors.grey.shade800),
     );
   }
 }

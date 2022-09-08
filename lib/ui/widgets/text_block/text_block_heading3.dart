@@ -10,16 +10,16 @@ class TextBlockHeading3 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
       ],

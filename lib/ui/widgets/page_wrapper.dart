@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// A page wrapper to combine common properties of pages.
 class PageWrapper extends StatelessWidget {
   const PageWrapper({
     required this.child,

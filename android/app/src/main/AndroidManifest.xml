@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.entain_beer_task_richardas">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="entain_beer_task_richardas"
         android:name="${applicationName}"

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:entain_beer_task_richardas/ui/widgets/beer_details/beer_details_body.dart';
 import 'package:entain_beer_task_richardas/models/beer/beer.dart';
-import 'package:entain_beer_task_richardas/ui/pages/page_wrapper.dart';
+import 'package:entain_beer_task_richardas/ui/widgets/page_wrapper.dart';
+import 'package:entain_beer_task_richardas/ui/widgets/beer_details/beer_details_body.dart';
 import 'package:entain_beer_task_richardas/ui/widgets/beer_details/beer_details_bottle_display.dart';
 import 'package:entain_beer_task_richardas/ui/widgets/circular_elevated_button.dart';
 
 class BeerDetailsPage extends StatelessWidget {
-  BeerDetailsPage({required this.beer, super.key});
+  const BeerDetailsPage({required this.beer, super.key});
 
   final Beer beer;
 
@@ -19,7 +19,7 @@ class BeerDetailsPage extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
-                BeerDetailsBottleDisplayX(beer: beer),
+                BeerDetailsBottleDisplay(beer: beer),
                 BeerDetailsBody(beer: beer),
               ],
             ),
@@ -41,5 +41,3 @@ class BeerDetailsPage extends StatelessWidget {
     );
   }
 }
-
-

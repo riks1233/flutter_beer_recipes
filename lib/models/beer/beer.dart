@@ -3,9 +3,16 @@ import 'package:equatable/equatable.dart';
 
 part 'beer.g.dart';
 
+// Using variable names just like in API (snake_case), because it was suggested
+// here: https://docs.flutter.dev/development/data-and-backend/json
+//
+// "It’s best if both server and client follow the same naming strategy."
+
+// ignore_for_file: non_constant_identifier_names
+
 @JsonSerializable(explicitToJson: true)
 class Beer extends Equatable {
-    Beer({
+    const Beer({
         this.id,
         this.name,
         this.tagline,

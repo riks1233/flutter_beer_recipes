@@ -3,16 +3,17 @@ import 'package:entain_beer_task_richardas/ui/widgets/animated_transform_horizon
 import 'package:entain_beer_task_richardas/models/beer/beer.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class BeerDetailsBottleDisplayX extends StatelessWidget {
-  const BeerDetailsBottleDisplayX({required this.beer, super.key});
+class BeerDetailsBottleDisplay extends StatelessWidget {
+  const BeerDetailsBottleDisplay({required this.beer, super.key});
 
   final Beer beer;
   final Curve animationCurve = Curves.decelerate;
   final Duration animationDuration =
       const Duration(seconds: 1, milliseconds: 200);
-
-  static const double beerImageHeight = 350;
-  static const double beerImageWidth = 180;
+  // It should be safe to use hardcoded values in this widget, because the app is intended to be
+  // used only in portrait mode and only on mobile devices.
+  static const double beerImageMaxHeight = 350;
+  static const double beerImageMaxWidth = 150;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +59,8 @@ class BeerDetailsBottleDisplayX extends StatelessWidget {
           ),
           Center(
             child: SizedBox(
-              height: beerImageHeight,
-              width: beerImageWidth,
+              height: beerImageMaxHeight,
+              width: beerImageMaxWidth,
               child: AnimatedTransformHorizontalSlide(
                 childStartOffset: const Offset(15, 0),
                 tweenDeltaX: -15,

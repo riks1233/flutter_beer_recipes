@@ -6,6 +6,7 @@ class BeerCircleAvatar extends StatelessWidget {
   const BeerCircleAvatar({required this.beer, super.key});
 
   final Beer beer;
+  static const double beerImageMaxWidth = 40;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +28,20 @@ class BeerCircleAvatar extends StatelessWidget {
             ),
           ),
           Center(
-            child: Transform.rotate(
-              angle: -20 * 3.14 / 180,
-              child: beer.image_url == null
-                  ? null
-                  : FadeInImage.memoryNetwork(
-                      fit: BoxFit.contain,
-                      fadeOutDuration: const Duration(milliseconds: 1),
-                      fadeInDuration: const Duration(milliseconds: 300),
-                      placeholder: kTransparentImage,
-                      image: beer.image_url!,
-                    ),
+            child: SizedBox(
+              width: beerImageMaxWidth,
+              child: Transform.rotate(
+                angle: -20 * 3.14 / 180,
+                child: beer.image_url == null
+                    ? null
+                    : FadeInImage.memoryNetwork(
+                        fit: BoxFit.contain,
+                        fadeOutDuration: const Duration(milliseconds: 1),
+                        fadeInDuration: const Duration(milliseconds: 300),
+                        placeholder: kTransparentImage,
+                        image: beer.image_url!,
+                      ),
+              ),
             ),
           )
         ],
