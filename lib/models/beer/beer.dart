@@ -12,182 +12,214 @@ part 'beer.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Beer extends Equatable {
-    const Beer({
-        this.id,
-        this.name,
-        this.tagline,
-        this.first_brewed,
-        this.description,
-        this.image_url,
-        this.abv,
-        this.ibu,
-        this.target_fg,
-        this.target_og,
-        this.ebc,
-        this.srm,
-        this.ph,
-        this.attenuation_level,
-        this.volume,
-        this.boil_volume,
-        this.method,
-        this.ingredients,
-        this.food_pairing,
-        this.brewers_tips,
-        this.contributed_by,
-    });
+  const Beer({
+    this.id,
+    this.name,
+    this.tagline,
+    this.first_brewed,
+    this.description,
+    this.image_url,
+    this.abv,
+    this.ibu,
+    this.target_fg,
+    this.target_og,
+    this.ebc,
+    this.srm,
+    this.ph,
+    this.attenuation_level,
+    this.volume,
+    this.boil_volume,
+    this.method,
+    this.ingredients,
+    this.food_pairing,
+    this.brewers_tips,
+    this.contributed_by,
+  });
 
-    final int? id;
-    final String? name;
-    final String? tagline;
-    final String? first_brewed;
-    final String? description;
-    final String? image_url;
-    final double? abv;
-    final double? ibu;
-    final double? target_fg;
-    final double? target_og;
-    final double? ebc;
-    final double? srm;
-    final double? ph;
-    final double? attenuation_level;
-    final Volume? volume;
-    final Volume? boil_volume;
-    final Method? method;
-    final Ingredients? ingredients;
-    final List<String>? food_pairing;
-    final String? brewers_tips;
-    final String? contributed_by;
+  final int? id;
+  final String? name;
+  final String? tagline;
+  final String? first_brewed;
+  final String? description;
+  final String? image_url;
+  final double? abv;
+  final double? ibu;
+  final double? target_fg;
+  final double? target_og;
+  final double? ebc;
+  final double? srm;
+  final double? ph;
+  final double? attenuation_level;
+  final Volume? volume;
+  final Volume? boil_volume;
+  final Method? method;
+  final Ingredients? ingredients;
+  final List<String>? food_pairing;
+  final String? brewers_tips;
+  final String? contributed_by;
 
-    factory Beer.fromJson(Map<String, dynamic> json) => _$BeerFromJson(json);
-    Map<String, dynamic> toJson() => _$BeerToJson(this);
+  factory Beer.fromJson(Map<String, dynamic> json) => _$BeerFromJson(json);
+  Map<String, dynamic> toJson() => _$BeerToJson(this);
 
-    @override
-    List<Object?> get props => [
-      id,
-      name,
-      tagline,
-      first_brewed,
-      description,
-      image_url,
-      abv,
-      ibu,
-      target_fg,
-      target_og,
-      ebc,
-      srm,
-      ph,
-      attenuation_level,
-      volume,
-      boil_volume,
-      method,
-      ingredients,
-      food_pairing,
-      brewers_tips,
-      contributed_by
-    ];
-
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        tagline,
+        first_brewed,
+        description,
+        image_url,
+        abv,
+        ibu,
+        target_fg,
+        target_og,
+        ebc,
+        srm,
+        ph,
+        attenuation_level,
+        volume,
+        boil_volume,
+        method,
+        ingredients,
+        food_pairing,
+        brewers_tips,
+        contributed_by
+      ];
 }
 
 @JsonSerializable(explicitToJson: true)
-class Volume {
-    Volume({
-        this.value,
-        this.unit,
-    });
+class Volume extends Equatable {
+  const Volume({
+    this.value,
+    this.unit,
+  });
 
-    final double? value;
-    final String? unit;
+  final double? value;
+  final String? unit;
 
-    factory Volume.fromJson(Map<String, dynamic> json) => _$VolumeFromJson(json);
-    Map<String, dynamic> toJson() => _$VolumeToJson(this);
+  factory Volume.fromJson(Map<String, dynamic> json) => _$VolumeFromJson(json);
+  Map<String, dynamic> toJson() => _$VolumeToJson(this);
+
+  @override
+  List<Object?> get props => [value, unit];
 }
 
 @JsonSerializable(explicitToJson: true)
-class Ingredients {
-    Ingredients({
-        this.malt,
-        this.hops,
-        this.yeast,
-    });
+class Ingredients extends Equatable {
+  const Ingredients({
+    this.malt,
+    this.hops,
+    this.yeast,
+  });
 
-    final List<Malt>? malt;
-    final List<Hop>? hops;
-    final String? yeast;
+  final List<Malt>? malt;
+  final List<Hop>? hops;
+  final String? yeast;
 
-    factory Ingredients.fromJson(Map<String, dynamic> json) => _$IngredientsFromJson(json);
-    Map<String, dynamic> toJson() => _$IngredientsToJson(this);
+  factory Ingredients.fromJson(Map<String, dynamic> json) =>
+      _$IngredientsFromJson(json);
+  Map<String, dynamic> toJson() => _$IngredientsToJson(this);
+
+  @override
+  List<Object?> get props => [malt, hops, yeast];
 }
 
 @JsonSerializable(explicitToJson: true)
-class Hop {
-    Hop({
-        this.name,
-        this.amount,
-        this.add,
-        this.attribute,
-    });
+class Hop extends Equatable {
+  const Hop({
+    this.name,
+    this.amount,
+    this.add,
+    this.attribute,
+  });
 
-    final String? name;
-    final Volume? amount;
-    final String? add;
-    final String? attribute;
+  final String? name;
+  final Volume? amount;
+  final String? add;
+  final String? attribute;
 
-    factory Hop.fromJson(Map<String, dynamic> json) => _$HopFromJson(json);
-    Map<String, dynamic> toJson() => _$HopToJson(this);
+  factory Hop.fromJson(Map<String, dynamic> json) => _$HopFromJson(json);
+  Map<String, dynamic> toJson() => _$HopToJson(this);
+
+  @override
+  List<Object?> get props => [
+        name,
+        amount,
+        add,
+        attribute,
+      ];
 }
 
 @JsonSerializable(explicitToJson: true)
-class Malt {
-    Malt({
-        this.name,
-        this.amount,
-    });
+class Malt extends Equatable {
+  const Malt({
+    this.name,
+    this.amount,
+  });
 
-    final String? name;
-    final Volume? amount;
+  final String? name;
+  final Volume? amount;
 
-    factory Malt.fromJson(Map<String, dynamic> json) => _$MaltFromJson(json);
-    Map<String, dynamic> toJson() => _$MaltToJson(this);
+  factory Malt.fromJson(Map<String, dynamic> json) => _$MaltFromJson(json);
+  Map<String, dynamic> toJson() => _$MaltToJson(this);
+
+  @override
+  List<Object?> get props => [name, amount];
 }
 
 @JsonSerializable(explicitToJson: true)
-class Method {
-    Method({
-        this.mash_temp,
-        this.fermentation,
-        this.twist,
-    });
+class Method extends Equatable {
+  const Method({
+    this.mash_temp,
+    this.fermentation,
+    this.twist,
+  });
 
-    final List<MashTemp>? mash_temp;
-    final Fermentation? fermentation;
-    final String? twist;
+  final List<MashTemp>? mash_temp;
+  final Fermentation? fermentation;
+  final String? twist;
 
-    factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);
-    Map<String, dynamic> toJson() => _$MethodToJson(this);
+  factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);
+  Map<String, dynamic> toJson() => _$MethodToJson(this);
+
+  @override
+  List<Object?> get props => [
+        mash_temp,
+        fermentation,
+        twist,
+      ];
 }
 
 @JsonSerializable(explicitToJson: true)
-class Fermentation {
-    Fermentation({
-        this.temp,
-    });
+class Fermentation extends Equatable {
+  const Fermentation({
+    this.temp,
+  });
 
-    final Volume? temp;
+  final Volume? temp;
 
-    factory Fermentation.fromJson(Map<String, dynamic> json) => _$FermentationFromJson(json);
-    Map<String, dynamic> toJson() => _$FermentationToJson(this);
+  factory Fermentation.fromJson(Map<String, dynamic> json) =>
+      _$FermentationFromJson(json);
+  Map<String, dynamic> toJson() => _$FermentationToJson(this);
+
+  @override
+  List<Object?> get props => [temp];
 }
 
 @JsonSerializable(explicitToJson: true)
-class MashTemp {
-    MashTemp({
-        this.temp,
-        this.duration,
-    });
+class MashTemp extends Equatable {
+  const MashTemp({
+    this.temp,
+    this.duration,
+  });
 
-    final Volume? temp;
-    final double? duration;
+  final Volume? temp;
+  final double? duration;
 
-    factory MashTemp.fromJson(Map<String, dynamic> json) => _$MashTempFromJson(json);
-    Map<String, dynamic> toJson() => _$MashTempToJson(this);
+  factory MashTemp.fromJson(Map<String, dynamic> json) =>
+      _$MashTempFromJson(json);
+  Map<String, dynamic> toJson() => _$MashTempToJson(this);
+
+  @override
+  List<Object?> get props => [temp, duration];
 }

@@ -29,7 +29,7 @@ class _BeerListState extends State<BeerList> {
   }
 
   void _onScroll() {
-    if (_isBottom) context.read<BeersBloc>().add(BeersFetched());
+    if (_isBottom) context.read<BeersBloc>().add(FetchBeers());
   }
 
   bool get _isBottom {
@@ -51,17 +51,11 @@ class _BeerListState extends State<BeerList> {
               return const Center(child: Text('No beers today.'));
             }
             return ListView.builder(
-              padding: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               itemCount: state.hasReachedMax
                   ? state.beers.length
                   : state.beers.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                if (index == 0) {
-                  // Insert a padding divider.
-                  return const SizedBox(
-                    height: 8,
-                  );
-                }
                 return index < state.beers.length
                     ? BeerListTile(beer: state.beers[index])
                     : const ProgressIndicatorListTile();

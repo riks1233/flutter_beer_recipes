@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:entain_beer_task_richardas/constants.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:equatable/equatable.dart';
 import 'package:dio/dio.dart';
@@ -9,8 +10,6 @@ import 'package:entain_beer_task_richardas/models/beer/beer.dart';
 part 'beers_event.dart';
 part 'beers_state.dart';
 
-const _endpointUrl = 'https://api.punkapi.com/v2/beers';
-const _beersPerPage = 20;
 const _throttleDuration = Duration(milliseconds: 100);
 
 EventTransformer<E> throttleDroppable<E>(Duration duration) {
@@ -20,19 +19,25 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 }
 
 class BeersBloc extends Bloc<BeersEvent, BeersState> {
-  BeersBloc() : super(const BeersState()) {
-    on<BeersFetched>(
-      _onBeersFetched,
+  BeersBloc({required this.dio}) : super(const BeersState()) {
+    on<FetchBeers>(
+      _onFetchBeers,
       transformer: throttleDroppable(_throttleDuration),
     );
   }
 
-  Future<void> _onBeersFetched(
-      BeersFetched event, Emitter<BeersState> emit) async {
-    if (state.hasReachedMax) return;
+  /// [Dio] instance is needed as an argument so that API
+  /// calls are testable.
+  final Dio dio;
+
+  Future<void> _onFetchBeers(
+      FetchBeers event, Emitter<BeersState> emit) async {
+    if (state.hasReachedMax) {
+      return;
+    }
     try {
       if (state.status == BeersStatus.initial) {
-        final beers = await _fetchBeers();
+        final beers = await _fetchBeers(page: 1);
         return emit(
           state.copyWith(
             status: BeersStatus.success,
@@ -41,9 +46,17 @@ class BeersBloc extends Bloc<BeersEvent, BeersState> {
           ),
         );
       }
-      final nextPage = state.beers.length ~/ _beersPerPage + 1;
+      // Consider all number of items the API might return:
+      //  - Full list of beers (i.e. requested number of beers per page).
+      //  - Non-full list of beers.
+      //  - Empty list of beers.
+      int nextPage = state.beers.length ~/ Constants.beersApiBeersPerPage + 1;
+      bool lastPageReturnedFullList = state.beers.length % Constants.beersApiBeersPerPage == 0;
+      if (!lastPageReturnedFullList) {
+        nextPage += 1;
+      }
       final beers = await _fetchBeers(page: nextPage);
-      final hasReachedMax = beers.isEmpty || beers.length < _beersPerPage;
+      final hasReachedMax = beers.isEmpty;
       emit(
         state.copyWith(
           status: BeersStatus.success,
@@ -56,9 +69,18 @@ class BeersBloc extends Bloc<BeersEvent, BeersState> {
     }
   }
 
-  Future<List<Beer>> _fetchBeers({int page = 1}) async {
-    final response = await Dio().get(_endpointUrl,
-        queryParameters: {'page': page, 'per_page': _beersPerPage});
+  Future<List<Beer>> _fetchBeers({required int page}) async {
+    final response = await dio.getUri(
+      Uri.https(
+        Constants.beersApiAuthority,
+        Constants.beersApiEndpointPath,
+        <String, String>{
+          'page': page.toString(),
+          'per_page': Constants.beersApiBeersPerPage.toString()
+        }
+      )
+    );
+
     if (response.statusCode == 200) {
       List<dynamic> beersJsonList = response.data;
       List<Beer> beers =

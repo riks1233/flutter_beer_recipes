@@ -1,6 +1,7 @@
+import 'package:entain_beer_task_richardas/ui/widgets/beer_list/beer_list_tile_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:entain_beer_task_richardas/models/beer/beer.dart';
-import 'package:entain_beer_task_richardas/ui/widgets/beer_circle_avatar.dart';
+import 'package:entain_beer_task_richardas/ui/widgets/beer_list/beer_list_tile_circle_avatar.dart';
 import 'package:entain_beer_task_richardas/ui/pages/beer_details_page.dart';
 
 class BeerListTile extends StatelessWidget {
@@ -29,43 +30,13 @@ class BeerListTile extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  BeerCircleAvatar(
+                  BeerListTileCircleAvatar(
                     beer: beer,
                   ),
                   const SizedBox(
                     width: 16,
                   ),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          beer.name ?? '',
-                          maxLines: 1,
-                          overflow: TextOverflow.clip,
-                          softWrap: false,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(
-                          'by ${beer.contributed_by ?? '<unknown>'}',
-                          maxLines: 1,
-                          overflow: TextOverflow.clip,
-                          softWrap: false,
-                        ),
-                        Text(
-                          beer.description ?? '',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          softWrap: true,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: Colors.grey.shade600),
-                        ),
-                      ],
-                    ),
-                  )
+                  BeerListTileTexts(beer: beer)
                 ],
               ),
             ),

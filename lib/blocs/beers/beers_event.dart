@@ -5,4 +5,4 @@ abstract class BeersEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class BeersFetched extends BeersEvent {}
+class FetchBeers extends BeersEvent {}

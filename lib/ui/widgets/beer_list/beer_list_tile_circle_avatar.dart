@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:entain_beer_task_richardas/models/beer/beer.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class BeerCircleAvatar extends StatelessWidget {
-  const BeerCircleAvatar({required this.beer, super.key});
+class BeerListTileCircleAvatar extends StatelessWidget {
+  const BeerListTileCircleAvatar({required this.beer, super.key});
 
   final Beer beer;
   static const double beerImageMaxWidth = 40;
